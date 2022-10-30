@@ -1,0 +1,151 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nacos
+  namespace: demo
+  labels:
+    app: nacos
+spec:
+  type: NodePort
+  ports:
+    - port: 8848
+      name: server
+      targetPort: 8848
+      nodePort: 30218
+    - port: 7848
+      name: rpc
+      targetPort: 7848
+      nodePort: 30219
+  selector:
+    app: nacos
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nacos-headless
+  namespace: demo
+  labels:
+    app: nacos
+spec:
+  ports:
+    - port: 8848
+      name: server
+      targetPort: 8848
+    - port: 7848
+      name: rpc
+      targetPort: 7848
+  clusterIP: None
+  selector:
+    app: nacos
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nacos-cm
+  namespace: demo
+data:
+  mysql.db.name: "nacos"
+  mysql.port: "3306"
+  mysql.user: "root"
+  mysql.password: "T7RWk49vEY"
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nacos
+  namespace: demo
+spec:
+  serviceName: nacos-headless
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nacos
+      annotations:
+        pod.alpha.kubernetes.io/initialized: "true"
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "app"
+                    operator: In
+                    values:
+                      - nacos
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - name: nacos
+          imagePullPolicy: Always
+          image: nacos/nacos-server:latest
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8848
+              name: client-port
+            - containerPort: 7848
+              name: rpc
+          env:
+            - name: NACOS_REPLICAS
+              value: "1"
+            - name: MYSQL_SERVICE_DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: nacos-cm
+                  key: mysql.db.name
+            - name: MYSQL_SERVICE_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: nacos-cm
+                  key: mysql.port
+            - name: MYSQL_SERVICE_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: nacos-cm
+                  key: mysql.user
+            - name: MYSQL_SERVICE_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: nacos-cm
+                  key: mysql.password
+            - name: NACOS_SERVER_PORT
+              value: "8848"
+            - name: NACOS_APPLICATION_PORT
+              value: "8848"
+            - name: PREFER_HOST_MODE
+              value: "hostname"
+            - name: TZ
+              value: Asia/Shanghai
+            - name: MODE
+              value: standalone
+          volumeMounts:
+            - name: datadir
+              mountPath: /home/nacos/data
+            - name: logdir
+              mountPath: /home/nacos/logs
+  volumeClaimTemplates:
+    - metadata:
+        name: datadir
+        annotations:
+      spec:
+        storageClassName: local
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5Gi
+    - metadata:
+        name: logdir
+        annotations:
+      spec:
+        storageClassName: local
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 20Gi
+  selector:
+    matchLabels:
+      app: nacos

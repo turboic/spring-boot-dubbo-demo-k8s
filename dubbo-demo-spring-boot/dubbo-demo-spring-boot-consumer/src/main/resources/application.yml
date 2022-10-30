@@ -1,0 +1,47 @@
+server:
+  servlet:
+    context-path: /
+  port: 8091
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 2048MB
+      max-request-size: 2048MB
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: dubbo-springboot-demo-consumer
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+dubbo:
+  application:
+    name: dubbo-springboot-demo-consumer
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    id: zk-registry
+    #address: zookeeper://10.10.10.99:2181
+    #timeout: 2500000
+      #parameters:
+        #blockUntilConnectedWait: 250
+    address: nacos://nacos-0.nacos-headless.demo.svc.cluster.local:8848
+    group: dubbo
+    namespace: public
+    parameters:
+      consumer:
+        url: true
+  config-center:
+    #address: zookeeper://10.10.10.99:2181
+    address: nacos://nacos-0.nacos-headless.demo.svc.cluster.local:8848
+    group: dubbo
+    namespace: public
+  metadata-report:
+    address: nacos://nacos-0.nacos-headless.demo.svc.cluster.local:8848
+    group: dubbo
+    namespace: public
+    #address: zookeeper://10.10.10.99:2181

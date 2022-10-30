@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dubbo-demo-spring-boot-consumer
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dubbo-demo-spring-boot-consumer
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+  template:
+    metadata:
+      labels:
+        app: dubbo-demo-spring-boot-consumer
+        release: default
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: dubbo-demo-spring-boot-consumer
+        image: zhxl1989/dubbo-demo-spring-boot-consumer:0.4.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8091
+          name: http
+        resources:
+            limits:
+              cpu: '1'
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 1Gi
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: volume-localtime
+      volumes:
+        - hostPath:
+            path: /etc/localtime
+            type: ''
+          name: volume-localtime
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dubbo-demo-spring-boot-consumer
+  namespace: demo
+  labels:
+    service: dubbo-demo-spring-boot-consumer
+spec:
+  ports:
+    - name: http
+      port: 8091
+      protocol: TCP
+      targetPort: 8091
+      nodePort: 30891
+  selector:
+    app: dubbo-demo-spring-boot-consumer
+  type: NodePort

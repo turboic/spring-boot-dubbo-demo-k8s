@@ -1,0 +1,1 @@
+cp -r mysql.yaml apollo-env-dev/ dubbo-admin.yaml kubectl-apply.sh kubectl-delete.sh nacos.yaml service-apollo-portal-server.yaml zookeeper zookeeper.yaml dubbo-demo-spring-boot-consumer/ dubbo-demo-spring-boot-provider/ du2b-boot-8s/

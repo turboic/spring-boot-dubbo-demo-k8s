@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dubbo-admin
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dubbo-admin
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+  template:
+    metadata:
+      labels:
+        app: dubbo-admin
+        release: default
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: dubbo-admin
+        image: zhxl1989/dubbo-admin:0.4.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: http
+        resources:
+            limits:
+              cpu: '1'
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 1Gi
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: volume-localtime
+      volumes:
+        - hostPath:
+            path: /etc/localtime
+            type: ''
+          name: volume-localtime
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dubbo-admin
+  namespace: demo
+  labels:
+    service: dubbo-admin
+spec:
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+      nodePort: 30888
+  selector:
+    app: dubbo-admin
+  type: NodePort

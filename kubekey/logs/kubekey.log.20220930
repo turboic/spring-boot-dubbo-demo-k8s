@@ -1,0 +1,378 @@
+20:03:04 CST [GreetingsModule] Greetings
+20:03:04 CST message: [liebe-virtual-machine]
+Greetings, KubeKey!
+20:03:04 CST success: [liebe-virtual-machine]
+20:03:04 CST [NodePreCheckModule] A pre-check on nodes
+20:03:04 CST success: [liebe-virtual-machine]
+20:03:04 CST [ConfirmModule] Display confirmation form
+20:03:04 CST [ERRO] liebe-virtual-machine: conntrack is required.
+20:03:04 CST [ERRO] liebe-virtual-machine: socat is required.
+20:03:39 CST [GreetingsModule] Greetings
+20:03:39 CST message: [liebe-virtual-machine]
+Greetings, KubeKey!
+20:03:39 CST success: [liebe-virtual-machine]
+20:03:39 CST [NodePreCheckModule] A pre-check on nodes
+20:03:40 CST success: [liebe-virtual-machine]
+20:03:40 CST [ConfirmModule] Display confirmation form
+20:03:42 CST success: [LocalHost]
+20:03:42 CST [NodeBinariesModule] Download installation binaries
+20:03:42 CST message: [localhost]
+downloading amd64 kubeadm v1.22.10 ...
+20:04:29 CST message: [localhost]
+downloading amd64 kubelet v1.22.10 ...
+20:06:28 CST message: [localhost]
+downloading amd64 kubectl v1.22.10 ...
+20:07:13 CST message: [localhost]
+downloading amd64 helm v3.6.3 ...
+20:07:58 CST message: [localhost]
+downloading amd64 kubecni v0.9.1 ...
+20:08:38 CST message: [localhost]
+downloading amd64 crictl v1.24.0 ...
+20:08:53 CST message: [localhost]
+downloading amd64 etcd v3.4.13 ...
+20:09:10 CST message: [localhost]
+downloading amd64 docker 20.10.8 ...
+20:09:32 CST success: [LocalHost]
+20:09:32 CST [ConfigureOSModule] Prepare to init OS
+20:09:32 CST success: [liebe-virtual-machine]
+20:09:32 CST [ConfigureOSModule] Generate init os script
+20:09:32 CST success: [liebe-virtual-machine]
+20:09:32 CST [ConfigureOSModule] Exec init os script
+20:09:33 CST stdout: [liebe-virtual-machine]
+net.ipv4.ip_forward = 1
+net.bridge.bridge-nf-call-arptables = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_local_reserved_ports = 30000-32767
+vm.max_map_count = 262144
+vm.swappiness = 1
+fs.inotify.max_user_instances = 524288
+kernel.pid_max = 65535
+20:09:33 CST success: [liebe-virtual-machine]
+20:09:33 CST [ConfigureOSModule] configure the ntp server for each node
+20:09:33 CST skipped: [liebe-virtual-machine]
+20:09:33 CST [KubernetesStatusModule] Get kubernetes cluster status
+20:09:33 CST success: [liebe-virtual-machine]
+20:09:33 CST [InstallContainerModule] Sync docker binaries
+20:09:35 CST success: [liebe-virtual-machine]
+20:09:35 CST [InstallContainerModule] Generate docker service
+20:09:35 CST success: [liebe-virtual-machine]
+20:09:35 CST [InstallContainerModule] Generate docker config
+20:09:35 CST success: [liebe-virtual-machine]
+20:09:35 CST [InstallContainerModule] Enable docker
+20:09:43 CST success: [liebe-virtual-machine]
+20:09:43 CST [InstallContainerModule] Add auths to container runtime
+20:09:43 CST skipped: [liebe-virtual-machine]
+20:09:43 CST [PullModule] Start to pull images on all nodes
+20:09:43 CST message: [liebe-virtual-machine]
+downloading image: registry.cn-beijing.aliyuncs.com/kubesphereio/pause:3.5
+20:09:45 CST message: [liebe-virtual-machine]
+downloading image: registry.cn-beijing.aliyuncs.com/kubesphereio/kube-apiserver:v1.22.10
+20:10:03 CST message: [liebe-virtual-machine]
+downloading image: registry.cn-beijing.aliyuncs.com/kubesphereio/kube-controller-manager:v1.22.10
+20:10:19 CST message: [liebe-virtual-machine]
+downloading image: registry.cn-beijing.aliyuncs.com/kubesphereio/kube-scheduler:v1.22.10
+20:10:29 CST message: [liebe-virtual-machine]
+downloading image: registry.cn-beijing.aliyuncs.com/kubesphereio/kube-proxy:v1.22.10
+20:10:44 CST message: [liebe-virtual-machine]
+downloading image: registry.cn-beijing.aliyuncs.com/kubesphereio/coredns:1.8.0
+20:10:52 CST message: [liebe-virtual-machine]
+downloading image: registry.cn-beijing.aliyuncs.com/kubesphereio/k8s-dns-node-cache:1.15.12
+20:11:06 CST message: [liebe-virtual-machine]
+downloading image: registry.cn-beijing.aliyuncs.com/kubesphereio/kube-controllers:v3.23.2
+20:11:25 CST message: [liebe-virtual-machine]
+downloading image: registry.cn-beijing.aliyuncs.com/kubesphereio/cni:v3.23.2
+20:12:00 CST message: [liebe-virtual-machine]
+downloading image: registry.cn-beijing.aliyuncs.com/kubesphereio/node:v3.23.2
+20:12:25 CST message: [liebe-virtual-machine]
+downloading image: registry.cn-beijing.aliyuncs.com/kubesphereio/pod2daemon-flexvol:v3.23.2
+20:12:35 CST success: [liebe-virtual-machine]
+20:12:35 CST [ETCDPreCheckModule] Get etcd status
+20:12:35 CST success: [liebe-virtual-machine]
+20:12:35 CST [CertsModule] Fetch etcd certs
+20:12:35 CST success: [liebe-virtual-machine]
+20:12:35 CST [CertsModule] Generate etcd Certs
+20:12:36 CST success: [LocalHost]
+20:12:36 CST [CertsModule] Synchronize certs file
+20:12:36 CST success: [liebe-virtual-machine]
+20:12:36 CST [CertsModule] Synchronize certs file to master
+20:12:36 CST skipped: [liebe-virtual-machine]
+20:12:36 CST [InstallETCDBinaryModule] Install etcd using binary
+20:12:37 CST success: [liebe-virtual-machine]
+20:12:37 CST [InstallETCDBinaryModule] Generate etcd service
+20:12:37 CST success: [liebe-virtual-machine]
+20:12:37 CST [InstallETCDBinaryModule] Generate access address
+20:12:37 CST success: [liebe-virtual-machine]
+20:12:37 CST [ETCDConfigureModule] Health check on exist etcd
+20:12:37 CST skipped: [liebe-virtual-machine]
+20:12:37 CST [ETCDConfigureModule] Generate etcd.env config on new etcd
+20:12:37 CST success: [liebe-virtual-machine]
+20:12:37 CST [ETCDConfigureModule] Refresh etcd.env config on all etcd
+20:12:37 CST success: [liebe-virtual-machine]
+20:12:37 CST [ETCDConfigureModule] Restart etcd
+20:12:41 CST stdout: [liebe-virtual-machine]
+Created symlink /etc/systemd/system/multi-user.target.wants/etcd.service → /etc/systemd/system/etcd.service.
+20:12:41 CST success: [liebe-virtual-machine]
+20:12:41 CST [ETCDConfigureModule] Health check on all etcd
+20:12:41 CST success: [liebe-virtual-machine]
+20:12:41 CST [ETCDConfigureModule] Refresh etcd.env config to exist mode on all etcd
+20:12:42 CST success: [liebe-virtual-machine]
+20:12:42 CST [ETCDConfigureModule] Health check on all etcd
+20:12:42 CST success: [liebe-virtual-machine]
+20:12:42 CST [ETCDBackupModule] Backup etcd data regularly
+20:12:42 CST success: [liebe-virtual-machine]
+20:12:42 CST [ETCDBackupModule] Generate backup ETCD service
+20:12:42 CST success: [liebe-virtual-machine]
+20:12:42 CST [ETCDBackupModule] Generate backup ETCD timer
+20:12:42 CST success: [liebe-virtual-machine]
+20:12:42 CST [ETCDBackupModule] Enable backup etcd service
+20:12:42 CST success: [liebe-virtual-machine]
+20:12:42 CST [InstallKubeBinariesModule] Synchronize kubernetes binaries
+20:12:47 CST success: [liebe-virtual-machine]
+20:12:47 CST [InstallKubeBinariesModule] Synchronize kubelet
+20:12:47 CST success: [liebe-virtual-machine]
+20:12:47 CST [InstallKubeBinariesModule] Generate kubelet service
+20:12:47 CST success: [liebe-virtual-machine]
+20:12:47 CST [InstallKubeBinariesModule] Enable kubelet service
+20:12:48 CST success: [liebe-virtual-machine]
+20:12:48 CST [InstallKubeBinariesModule] Generate kubelet env
+20:12:48 CST success: [liebe-virtual-machine]
+20:12:48 CST [InitKubernetesModule] Generate kubeadm config
+20:12:48 CST success: [liebe-virtual-machine]
+20:12:48 CST [InitKubernetesModule] Init cluster using kubeadm
+20:13:12 CST stdout: [liebe-virtual-machine]
+W0930 20:12:48.309075    7304 utils.go:69] The recommended value for "clusterDNS" in "KubeletConfiguration" is: [10.233.0.10]; the provided value is: [169.254.25.10]
+[init] Using Kubernetes version: v1.22.10
+[preflight] Running pre-flight checks
+	[WARNING FileExisting-ethtool]: ethtool not found in system path
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action in beforehand using 'kubeadm config images pull'
+[certs] Using certificateDir folder "/etc/kubernetes/pki"
+[certs] Generating "ca" certificate and key
+[certs] Generating "apiserver" certificate and key
+[certs] apiserver serving cert is signed for DNS names [kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local lb.kubesphere.local liebe-virtual-machine liebe-virtual-machine.cluster.local localhost] and IPs [10.233.0.1 10.10.10.99 127.0.0.1]
+[certs] Generating "apiserver-kubelet-client" certificate and key
+[certs] Generating "front-proxy-ca" certificate and key
+[certs] Generating "front-proxy-client" certificate and key
+[certs] External etcd mode: Skipping etcd/ca certificate authority generation
+[certs] External etcd mode: Skipping etcd/server certificate generation
+[certs] External etcd mode: Skipping etcd/peer certificate generation
+[certs] External etcd mode: Skipping etcd/healthcheck-client certificate generation
+[certs] External etcd mode: Skipping apiserver-etcd-client certificate generation
+[certs] Generating "sa" key and public key
+[kubeconfig] Using kubeconfig folder "/etc/kubernetes"
+[kubeconfig] Writing "admin.conf" kubeconfig file
+[kubeconfig] Writing "kubelet.conf" kubeconfig file
+[kubeconfig] Writing "controller-manager.conf" kubeconfig file
+[kubeconfig] Writing "scheduler.conf" kubeconfig file
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Starting the kubelet
+[control-plane] Using manifest folder "/etc/kubernetes/manifests"
+[control-plane] Creating static Pod manifest for "kube-apiserver"
+[control-plane] Creating static Pod manifest for "kube-controller-manager"
+[control-plane] Creating static Pod manifest for "kube-scheduler"
+[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests". This can take up to 4m0s
+[apiclient] All control plane components are healthy after 21.002678 seconds
+[upload-config] Storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace
+[kubelet] Creating a ConfigMap "kubelet-config-1.22" in namespace kube-system with the configuration for the kubelets in the cluster
+[upload-certs] Skipping phase. Please see --upload-certs
+[mark-control-plane] Marking the node liebe-virtual-machine as control-plane by adding the labels: [node-role.kubernetes.io/master(deprecated) node-role.kubernetes.io/control-plane node.kubernetes.io/exclude-from-external-load-balancers]
+[mark-control-plane] Marking the node liebe-virtual-machine as control-plane by adding the taints [node-role.kubernetes.io/master:NoSchedule]
+[bootstrap-token] Using token: eex2kx.8ov2ach0i0cthb78
+[bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles
+[bootstrap-token] configured RBAC rules to allow Node Bootstrap tokens to get nodes
+[bootstrap-token] configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
+[bootstrap-token] configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
+[bootstrap-token] configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
+[bootstrap-token] Creating the "cluster-info" ConfigMap in the "kube-public" namespace
+[kubelet-finalize] Updating "/etc/kubernetes/kubelet.conf" to point to a rotatable kubelet client certificate and key
+[addons] Applied essential addon: CoreDNS
+[addons] Applied essential addon: kube-proxy
+
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+You can now join any number of control-plane nodes by copying certificate authorities
+and service account keys on each node and then running the following as root:
+
+  kubeadm join lb.kubesphere.local:6443 --token eex2kx.8ov2ach0i0cthb78 \
+	--discovery-token-ca-cert-hash sha256:8773ad7d871ec76297d32802b824806e8161a65a92d18250cece0f681c2c16e8 \
+	--control-plane 
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join lb.kubesphere.local:6443 --token eex2kx.8ov2ach0i0cthb78 \
+	--discovery-token-ca-cert-hash sha256:8773ad7d871ec76297d32802b824806e8161a65a92d18250cece0f681c2c16e8
+20:13:12 CST success: [liebe-virtual-machine]
+20:13:12 CST [InitKubernetesModule] Copy admin.conf to ~/.kube/config
+20:13:12 CST success: [liebe-virtual-machine]
+20:13:12 CST [InitKubernetesModule] Remove master taint
+20:13:12 CST stdout: [liebe-virtual-machine]
+node/liebe-virtual-machine untainted
+20:13:12 CST stdout: [liebe-virtual-machine]
+error: taint "node-role.kubernetes.io/control-plane:NoSchedule" not found
+20:13:12 CST [WARN] Failed to exec command: sudo -E /bin/bash -c "/usr/local/bin/kubectl taint nodes liebe-virtual-machine node-role.kubernetes.io/control-plane=:NoSchedule-" 
+error: taint "node-role.kubernetes.io/control-plane:NoSchedule" not found: Process exited with status 1
+20:13:12 CST success: [liebe-virtual-machine]
+20:13:12 CST [InitKubernetesModule] Add worker label
+20:13:12 CST stdout: [liebe-virtual-machine]
+node/liebe-virtual-machine labeled
+20:13:12 CST success: [liebe-virtual-machine]
+20:13:12 CST [ClusterDNSModule] Generate coredns service
+20:13:13 CST success: [liebe-virtual-machine]
+20:13:13 CST [ClusterDNSModule] Override coredns service
+20:13:13 CST stdout: [liebe-virtual-machine]
+service "kube-dns" deleted
+20:13:13 CST stdout: [liebe-virtual-machine]
+service/coredns created
+Warning: resource clusterroles/system:coredns is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create --save-config or kubectl apply. The missing annotation will be patched automatically.
+clusterrole.rbac.authorization.k8s.io/system:coredns configured
+20:13:13 CST success: [liebe-virtual-machine]
+20:13:13 CST [ClusterDNSModule] Generate nodelocaldns
+20:13:13 CST success: [liebe-virtual-machine]
+20:13:13 CST [ClusterDNSModule] Deploy nodelocaldns
+20:13:14 CST stdout: [liebe-virtual-machine]
+serviceaccount/nodelocaldns created
+daemonset.apps/nodelocaldns created
+20:13:14 CST success: [liebe-virtual-machine]
+20:13:14 CST [ClusterDNSModule] Generate nodelocaldns configmap
+20:13:14 CST success: [liebe-virtual-machine]
+20:13:14 CST [ClusterDNSModule] Apply nodelocaldns configmap
+20:13:14 CST stdout: [liebe-virtual-machine]
+configmap/nodelocaldns created
+20:13:14 CST success: [liebe-virtual-machine]
+20:13:14 CST [KubernetesStatusModule] Get kubernetes cluster status
+20:13:14 CST stdout: [liebe-virtual-machine]
+v1.22.10
+20:13:14 CST stdout: [liebe-virtual-machine]
+liebe-virtual-machine   v1.22.10   [map[address:10.10.10.99 type:InternalIP] map[address:liebe-virtual-machine type:Hostname]]
+20:13:24 CST stdout: [liebe-virtual-machine]
+W0930 20:13:24.834480    8987 version.go:103] could not fetch a Kubernetes version from the internet: unable to get URL "https://dl.k8s.io/release/stable-1.txt": Get "https://dl.k8s.io/release/stable-1.txt": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+W0930 20:13:24.834544    8987 version.go:104] falling back to the local client version: v1.22.10
+[upload-certs] Storing the certificates in Secret "kubeadm-certs" in the "kube-system" Namespace
+[upload-certs] Using certificate key:
+d708c45a33fb29b688a18494b5f19c5000c87b82cb3e041a4bd055936daa6961
+20:13:24 CST stdout: [liebe-virtual-machine]
+secret/kubeadm-certs patched
+20:13:24 CST stdout: [liebe-virtual-machine]
+secret/kubeadm-certs patched
+20:13:25 CST stdout: [liebe-virtual-machine]
+secret/kubeadm-certs patched
+20:13:25 CST stdout: [liebe-virtual-machine]
+8bt1wk.zstvviy3zlbvrqyq
+20:13:25 CST success: [liebe-virtual-machine]
+20:13:25 CST [JoinNodesModule] Generate kubeadm config
+20:13:25 CST skipped: [liebe-virtual-machine]
+20:13:25 CST [JoinNodesModule] Join control-plane node
+20:13:25 CST skipped: [liebe-virtual-machine]
+20:13:25 CST [JoinNodesModule] Join worker node
+20:13:25 CST skipped: [liebe-virtual-machine]
+20:13:25 CST [JoinNodesModule] Copy admin.conf to ~/.kube/config
+20:13:25 CST skipped: [liebe-virtual-machine]
+20:13:25 CST [JoinNodesModule] Remove master taint
+20:13:25 CST skipped: [liebe-virtual-machine]
+20:13:25 CST [JoinNodesModule] Add worker label to master
+20:13:25 CST skipped: [liebe-virtual-machine]
+20:13:25 CST [JoinNodesModule] Synchronize kube config to worker
+20:13:25 CST skipped: [liebe-virtual-machine]
+20:13:25 CST [JoinNodesModule] Add worker label to worker
+20:13:25 CST skipped: [liebe-virtual-machine]
+20:13:25 CST [DeployNetworkPluginModule] Generate calico
+20:13:25 CST success: [liebe-virtual-machine]
+20:13:25 CST [DeployNetworkPluginModule] Deploy calico
+20:13:26 CST stdout: [liebe-virtual-machine]
+configmap/calico-config created
+customresourcedefinition.apiextensions.k8s.io/bgpconfigurations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/bgppeers.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/blockaffinities.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/caliconodestatuses.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/clusterinformations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/felixconfigurations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/globalnetworkpolicies.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/globalnetworksets.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/hostendpoints.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ipamblocks.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ipamconfigs.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ipamhandles.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ippools.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ipreservations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/kubecontrollersconfigurations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/networkpolicies.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/networksets.crd.projectcalico.org created
+clusterrole.rbac.authorization.k8s.io/calico-kube-controllers created
+clusterrolebinding.rbac.authorization.k8s.io/calico-kube-controllers created
+clusterrole.rbac.authorization.k8s.io/calico-node created
+clusterrolebinding.rbac.authorization.k8s.io/calico-node created
+daemonset.apps/calico-node created
+serviceaccount/calico-node created
+deployment.apps/calico-kube-controllers created
+serviceaccount/calico-kube-controllers created
+poddisruptionbudget.policy/calico-kube-controllers created
+20:13:26 CST success: [liebe-virtual-machine]
+20:13:26 CST [ConfigureKubernetesModule] Configure kubernetes
+20:13:26 CST success: [liebe-virtual-machine]
+20:13:26 CST [ChownModule] Chown user $HOME/.kube dir
+20:13:26 CST success: [liebe-virtual-machine]
+20:13:26 CST [AutoRenewCertsModule] Generate k8s certs renew script
+20:13:26 CST success: [liebe-virtual-machine]
+20:13:26 CST [AutoRenewCertsModule] Generate k8s certs renew service
+20:13:26 CST success: [liebe-virtual-machine]
+20:13:26 CST [AutoRenewCertsModule] Generate k8s certs renew timer
+20:13:26 CST success: [liebe-virtual-machine]
+20:13:26 CST [AutoRenewCertsModule] Enable k8s certs renew service
+20:13:26 CST success: [liebe-virtual-machine]
+20:13:26 CST [SaveKubeConfigModule] Save kube config as a configmap
+20:13:26 CST success: [LocalHost]
+20:13:26 CST [AddonsModule] Install addons
+20:13:26 CST success: [LocalHost]
+20:13:26 CST [DeployStorageClassModule] Generate OpenEBS manifest
+20:13:27 CST success: [liebe-virtual-machine]
+20:13:27 CST [DeployStorageClassModule] Deploy OpenEBS as cluster default StorageClass
+20:13:27 CST success: [liebe-virtual-machine]
+20:13:27 CST [DeployKubeSphereModule] Generate KubeSphere ks-installer crd manifests
+20:13:27 CST success: [liebe-virtual-machine]
+20:13:27 CST [DeployKubeSphereModule] Apply ks-installer
+20:13:28 CST stdout: [liebe-virtual-machine]
+namespace/kubesphere-system created
+serviceaccount/ks-installer created
+customresourcedefinition.apiextensions.k8s.io/clusterconfigurations.installer.kubesphere.io created
+clusterrole.rbac.authorization.k8s.io/ks-installer created
+clusterrolebinding.rbac.authorization.k8s.io/ks-installer created
+deployment.apps/ks-installer created
+20:13:28 CST success: [liebe-virtual-machine]
+20:13:28 CST [DeployKubeSphereModule] Add config to ks-installer manifests
+20:13:28 CST success: [liebe-virtual-machine]
+20:13:28 CST [DeployKubeSphereModule] Create the kubesphere namespace
+20:13:30 CST success: [liebe-virtual-machine]
+20:13:30 CST [DeployKubeSphereModule] Setup ks-installer config
+20:13:30 CST stdout: [liebe-virtual-machine]
+secret/kube-etcd-client-certs created
+20:13:30 CST success: [liebe-virtual-machine]
+20:13:30 CST [DeployKubeSphereModule] Apply ks-installer
+20:13:33 CST stdout: [liebe-virtual-machine]
+namespace/kubesphere-system unchanged
+serviceaccount/ks-installer unchanged
+customresourcedefinition.apiextensions.k8s.io/clusterconfigurations.installer.kubesphere.io unchanged
+clusterrole.rbac.authorization.k8s.io/ks-installer unchanged
+clusterrolebinding.rbac.authorization.k8s.io/ks-installer unchanged
+deployment.apps/ks-installer unchanged
+clusterconfiguration.installer.kubesphere.io/ks-installer created
+20:13:33 CST success: [liebe-virtual-machine]
+20:13:33 CST [CheckResultModule] Check ks-installer result
+20:22:05 CST success: [liebe-virtual-machine]
+20:22:05 CST Pipeline[CreateClusterPipeline] execute successfully
